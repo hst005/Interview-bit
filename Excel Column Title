@@ -1,0 +1,25 @@
+// Given a positive integer, return its corresponding column title as appear in an Excel sheet.
+
+#include<bits/stdc++.h>
+
+string Solution::convertToTitle(int n) {
+    
+    string ans="";
+    while(n!=0){
+        int temp=n%26;
+        if(temp!=0){
+            string a;
+            char t2; 
+            t2=temp+'A'-1;
+            n=n/26;
+            a.push_back(t2);
+            ans.insert(0,a);
+        }
+        else{
+            ans.insert(0,"Z");
+            n=n/26-1;
+        }
+    }
+    return ans;
+    
+}
