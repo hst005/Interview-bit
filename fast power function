@@ -1,0 +1,31 @@
+
+//Implement pow(x, n) % d.
+//In other words, given x, n and d,find (xn % d)
+
+
+int Solution::pow(int x, int y, int d) {
+    // Do not write main() function.
+    // Do not read input, instead use the arguments to the function.
+    // Do not print the output, instead return values as specified
+    // Still have a doubt. Checkout www.interviewbit.com/pages/sample_codes/ for more details
+
+    if(x==0){
+        return 0;
+    }
+    if(y==0){
+        return 1;
+    }
+    
+    long ans;
+    if(y%2==0){
+        ans=pow(x,y/2,d);
+        ans=(ans*ans)%d;
+    }
+     else{
+        ans=x%d;
+        ans=((ans*(pow(x,y-1,d)%d))%d);
+    }
+    
+    return (int)((ans+d)%d);
+     
+}
