@@ -1,0 +1,51 @@
+//Given a string A.
+//Return the string A after reversing the string word by word.
+
+
+string rev(string s){
+    string temp="";
+    for(int i=s.length()-1;i>=0;i--){
+        temp+=s[i];
+    }
+    return temp;
+}
+
+string Solution::solve(string a) {
+    a=rev(a);
+    string ans="";
+    //vector <string> ans;
+    string temp="";
+    int words=0;
+    for(int i=0;i<a.length();i++){
+        if(a[i]==' '){
+            temp=rev(temp);
+            if(words==0){
+                ans+=temp;
+                words++;
+            }
+            else{
+                ans+=" ";
+                ans+=temp;
+                words++;
+                
+            }
+            
+            temp="";
+        }
+        else{
+            temp+=a[i];
+        }
+        
+    }
+    if(words!=0){
+        temp=rev(temp);
+        ans+=" ";
+        ans+=temp;    
+    }
+    else{
+        temp=rev(temp);
+        ans+=temp;  
+    }
+    
+    return ans;
+}
