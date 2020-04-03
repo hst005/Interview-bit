@@ -1,0 +1,12 @@
+//Given an array of integers, every element appears twice except for one. Find that single one.
+
+//Note: Your algorithm should have a linear runtime complexity. Could you implement it without using extra memory?
+
+int Solution::singleNumber(const vector<int> &a) {
+    int n=a.size();
+    int pre=a[0];
+    for(int i=1;i<n;i++){
+        pre=a[i]^pre;
+    }
+    return pre;
+}
