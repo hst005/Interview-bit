@@ -1,0 +1,55 @@
+/*
+Given an unsorted integer array, find the first missing positive integer.
+
+Example:
+
+Given [1,2,0] return 3,
+
+[3,4,-1,1] return 2,
+
+[-8, -7, -6] returns 1
+
+Your algorithm should run in O(n) time and use constant space.
+*/
+
+
+int Solution::firstMissingPositive(vector<int> &a) {
+    int n=a.size();
+    if(n==1){
+        if(a[0]==1)
+            return 2;
+        return 1;
+    }
+    int j=n-1;
+    for(int i=0;i<n && i<j;i++){
+        if(a[i]<0){
+            while(a[j]<0){
+                j--;
+            }
+            int temp;
+            temp=a[j];
+            a[j]=a[i];
+            a[i]=temp;
+            j--;
+        }        
+    }
+    for(int i=0;i<=j;i++){
+        int absa=abs(a[i]);
+        if(absa>j){
+            continue;
+        }
+        if(a[absa]>=0){
+            a[absa]*=-1;
+        }
+    }
+    
+    for(int i=1;i<=j;i++){
+        if(a[i]>0){
+            return i;
+        }
+    }
+    if(j==n-1){
+        return n+1;
+    }
+    return j;
+}
